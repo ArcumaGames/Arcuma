@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cheats Multiplayer and Offline Games</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-13664HVELC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-13664HVELC');
+  </script>
+  <style>
+    :root {
+      --bg-primary: #0a0e14;
+      --bg-card: #1a2330;
+      --accent: #00ffcc;
+      --text-primary: #ffffff;
+      --text-secondary: #a0b3c9;
+      --shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      --border-radius: 16px;
+      --transition: all 0.4s ease-in-out;
+      --sidebar-width: 250px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
+      padding: 16px;
+      height: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .header {
+      text-align: center;
+      padding: 24px 0;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header h1 {
+      font-size: clamp(28px, 6vw, 40px);
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 12px;
+      text-shadow: 0 2px 4px rgba(0, 255, 204, 0.3);
+    }
+
+    .header .author {
+      font-size: clamp(16px, 3vw, 20px);
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .telegram-btn {
+      display: block;
+      background: var(--accent);
+      color: var(--bg-primary);
+      padding: 12px 24px;
+      border-radius: var(--border-radius);
+      text-decoration: none;
+      font-size: clamp(16px, 3vw, 18px);
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      max-width: 400px;
+      margin: 12px auto;
+    }
+
+    .telegram-btn:hover {
+      transform: scale(1.05);
+      background: #00e6b8;
+    }
+
+    .ad-info {
+      font-size: clamp(12px, 2.5vw, 14px);
+      color: var(--text-secondary);
+      max-width: 800px;
+      margin: 16px auto;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    .search-container {
+      margin: 16px auto;
+      max-width: 600px;
+      padding: 0 8px;
+      z-index: 500;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: clamp(14px, 3vw, 16px);
+      border: none;
+      border-radius: var(--border-radius);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      outline: none;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+    }
+
+    .search-input::placeholder {
+      color: var(--text-secondary);
+    }
+
+    .search-input:focus {
+      transform: scale(1.02);
+      box-shadow: 0 8px 24px rgba(0, 255, 204, 0.2);
+    }
+
+    .layout-selector {
+      text-align: center;
+      margin: 16px 0;
+    }
+
+    .layout-selector select {
+      padding: 10px 16px;
+      font-size: clamp(14px, 3vw, 16px);
+      border-radius: var(--border-radius);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: none;
+      outline: none;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+    }
+
+    .layout-selector select option {
+      background: var(--bg-card);
+      color: var(--text-primary);
+    }
+
+    .layout-selector select:hover {
+      transform: scale(1.02);
+    }
+
+    .hamburger {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 1100;
+      background: var(--accent);
+      color: var(--bg-primary);
+      padding: 8px 12px;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-size: 24px;
+      line-height: 1;
+      transition: var(--transition), left 0.3s ease;
+      box-shadow: var(--shadow);
+      will-change: transform;
+    }
+
+    .hamburger.open {
+      left: calc(var(--sidebar-width) + 16px);
+    }
+
+    .hamburger:hover {
+      background: #00e6b8;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: var(--sidebar-width);
+      height: 100%;
+      background: var(--bg-card);
+      padding: 60px 24px 24px;
+      z-index: 1000;
+      box-shadow: var(--shadow);
+      display: none;
+      will-change: transform;
+    }
+
+    .sidebar.open {
+      display: block;
+    }
+
+    .sidebar h3 {
+      font-size: 20px;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar ul li {
+      margin-bottom: 12px;
+    }
+
+    .sidebar ul li a {
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .sidebar ul li a:hover {
+      color: var(--accent);
+    }
+
+    .section-title {
+      font-size: clamp(24px, 5vw, 32px);
+      font-weight: 600;
+      color: var(--accent);
+      text-align: center;
+      margin: 32px 0 16px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-bottom: 32px;
+      scroll-margin-top: 80px;
+      will-change: scroll-position;
+    }
+
+    .container.single-column {
+      grid-template-columns: 1fr;
+    }
+
+    .container.two-columns {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cheat {
+      background: var(--bg-card);
+      border-radius: var(--border-radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cheat:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 30px rgba(0, 255, 204, 0.15);
+    }
+
+    .cheat.hidden {
+      display: none;
+    }
+
+    .cheat .video {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      background: #000;
+      box-shadow: var(--shadow);
+    }
+
+    .cheat .video iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .cheat .video-fallback {
+      display: none;
+      text-align: center;
+      padding: 12px;
+      background: var(--bg-primary);
+      border-radius: var(--border-radius);
+      color: var(--text-secondary);
+    }
+
+    .cheat .video-fallback a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .cheat .video-fallback a:hover {
+      text-decoration: underline;
+    }
+
+    .cheat .content h2 {
+      font-size: clamp(18px, 4vw, 22px);
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .cheat .content p {
+      font-size: clamp(12px, 2.5vw, 14px);
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .collapsible {
+      background: var(--accent);
+      color: var(--bg-primary);
+      padding: 10px 16px;
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: clamp(12px, 2.5vw, 14px);
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+    }
+
+    .collapsible:hover {
+      background: #00e6b8;
+      transform: scale(1.02);
+    }
+
+    .collapse-content {
+      display: none;
+      padding: 12px;
+      background: var(--bg-primary);
+      border-radius: var(--border-radius);
+      font-size: clamp(12px, 2.5vw, 14px);
+      line-height: 1.7;
+      max-height: 280px;
+      overflow-y: auto;
+      box-shadow: inset var(--shadow);
+    }
+
+    .collapse-content p {
+      margin-bottom: 8px;
+    }
+
+    .download-btn {
+      display: block;
+      background: var(--accent);
+      color: var(--bg-primary);
+      padding: 10px 16px;
+      text-align: center;
+      border-radius: var(--border-radius);
+      text-decoration: none;
+      font-size: clamp(14px, 3vw, 16px);
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+    }
+
+    .download-btn:not(:last-child) {
+      margin-bottom: 12px;
+    }
+
+    .download-btn:hover {
+      background: #00e6b8;
+      transform: scale(1.02);
+    }
+
+    @media (max-width: 480px) {
+      :root {
+        --sidebar-width: 200px;
+      }
+
+      body {
+        padding: 8px;
+      }
+
+      .header {
+        padding: 16px 0;
+      }
+
+      .container {
+        gap: 12px;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        padding-bottom: 32px;
+      }
+
+      .container.two-columns {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .cheat {
+        padding: 12px;
+      }
+
+      .search-container {
+        margin: 8px auto;
+      }
+
+      .cheat .video {
+        aspect-ratio: 16/9;
+      }
+
+      .cheat .content h2 {
+        font-size: 16px;
+      }
+
+      .cheat .content p, .collapsible, .collapse-content {
+        font-size: 12px;
+      }
+
+      .download-btn {
+        font-size: 14px;
+        padding: 8px 12px;
+      }
+
+      .hamburger.open {
+        left: calc(var(--sidebar-width) + 8px);
+      }
+
+      .sidebar {
+        padding: 60px 16px 16px;
+      }
+
+      .sidebar h3 {
+        font-size: 18px;
+      }
+
+      .sidebar ul li a {
+        font-size: 14px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+
+      .search-container {
+        margin: 20px auto;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .header h1 {
+        font-size: 42px;
+      }
+
+      .search-input {
+        max-width: 700px;
+      }
+
+      .container {
+        gap: 24px;
+      }
+
+      .sidebar {
+        width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="hamburger">☰</button>
+  <div class="sidebar">
+    <h3>Menu</h3>
+    <ul>
+      <li><a href="#multiplayer" class="scroll-link">Multiplayer Games</a></li>
+      <li><a href="#offline" class="scroll-link">Offline Games</a></li>
+    </ul>
+  </div>
+  <div class="header">
+    <h1>Cheats Multiplayer and Offline Games</h1>
+    <div class="author">Author: Arcuma Hack</div>
+    <a href="https://www.youtube.com/channel/UCXuQF4X2uSZLH_nuk49tQ5g" class="telegram-btn">Subscribe to YouTube Channel</a>
+    <div class="ad-info">
+      To follow the link, click on the ad, then Get Link and return to the site and wait 32 seconds.<br>
+      Чтобы пройти рекламу на ссылках, переходите по рекламе, затем нажмите Get Link и вернитесь на сайт, подождите 32 секунды.<br>
+      [Use VPN if the link does not work]
+    </div>
+    <div class="layout-selector">
+      <select id="layoutSelect">
+        <option value="auto">Auto (based on screen size)</option>
+        <option value="single">Single Column</option>
+        <option value="two">Two Columns</option>
+      </select>
+    </div>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search by cheat name..." class="search-input">
+    </div>
+  </div>
+  <h2 class="section-title">Multiplayer Games</h2>
+  <div class="container auto" id="multiplayer">
+    <div class="cheat">
+      <div class="video" data-video-url="https://www.youtube.com/watch?v=AOEdZEtfB6Y">
+        <iframe frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="video-fallback">
+          <p>Video is not available. <a target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>
+        </div>
+      </div>
+      <div class="content">
+        <h2>Skebob Gun 64-Bit</h2>
+        <p>Version: 0.1.1</p>
+        <button class="collapsible" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block'">Show Details</button>
+        <div class="collapse-content">
+          <p><strong>Functions:</strong></p>
+          <p><strong>[Main]</strong><br>
+          - Hack Money [Shop Buy]<br>
+          - Remove Timer in Chat</p>
+          <p><strong>[Player]</strong><br>
+          - Immortality<br>
+          - FlyJump<br>
+          - SpeedHack<br>
+          - SpeedValue<br>
+          - JumpForce<br>
+          - JumpValue<br>
+          - Gravity<br>
+          - GravityValue<br>
+          - Invisibility</p>
+          <p><strong>[Render]</strong><br>
+          - RenderCamera V1<br>
+          - RenderCamera V2</p>
+          <p><strong>[Players]</strong><br>
+          - MassKill<br>
+          - Freeze Players [Visual]</p>
+          <p><strong>[Backrooms]</strong><br>
+          - Immortality<br>
+          - Open gates [only if the game has not started]</p>
+        </div>
+        <a href="https://go.linkify.ru/2CVW" class="download-btn">Download APK</a>
+      </div>
+    </div>
+    <div class="cheat">
+      <div class="video" data-video-url="https://www.youtube.com/watch?v=gI0pHJvGUu8">
+        <iframe frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="video-fallback">
+          <p>Video is not available. <a target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>
+        </div>
+      </div>
+      <div class="content">
+        <h2>TF2mobile 32-Bit</h2>
+        <p>Version: 3.9.1[doesn't work]</p>
+        <button class="collapsible" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block'">Show Details</button>
+        <div class="collapse-content">
+          <p><strong>Functions:</strong></p>
+          <p><strong>[Player]</strong><br>
+          - Immortality<br>
+          - Immortality V2<br>
+          - Fly<br>
+          - WallHack<br>
+          - MassKill[Players]</p>
+          <p><strong>[Gun]</strong><br>
+          - FireRate<br>
+          - Infinity Ammo<br>
+          - No Spread<br>
+          - No Recoil<br>
+          - hack Rpg</p>
+          <p><strong>[Server]</strong><br>
+          - Make Server Private<br>
+          - Anti Kick<br>
+          - Enable admin panel[turn on in the menu]<br>
+          - Spoofing an ID [reduces the chance of being banned]</p>
+        </div>
+        <a href="https://go.linkify.ru/2C5P" class="download-btn">Download APK</a>
+        <a href="https://go.linkify.ru/2CVI" class="download-btn">Download 3.1.0 OLD MOD APK</a>
+      </div>
+    </div>
+    <div class="cheat">
+      <div class="video" data-video-url="https://www.youtube.com/watch?v=NI41iF3W0Ow">
+        <iframe frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="video-fallback">
+          <p>Video is not available. <a target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>
+        </div>
+      </div>
+      <div class="content">
+        <h2>Zombie Mod 64-Bit</h2>
+        <p>Version: 1.1</p>
+        <button class="collapsible" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block'">Show Details</button>
+        <div class="collapse-content">
+          <p><strong>Functions:</strong></p>
+          <p><strong>[Player]</strong><br>
+          - Jump Power<br>
+          - Speed<br>
+          - Immortality<br>
+          - No infect<br>
+          - Fly</p>
+          <p><strong>[Weapon]</strong><br>
+          - FireRate<br>
+          - Infinity Ammo<br>
+          - Reclining force<br>
+          - No reset Weapon</p>
+          <p><strong>[Game]</strong><br>
+          - Spam Radio<br>
+          - NoAds<br>
+          - Crash all<br>
+          - AntiCrash<br>
+          - All players repeat after you - enable it in the game menu not on the server</p>
+        </div>
+        <a href="https://www.mediafire.com/file/3up7hn4b3bl1z3w/ZombieMod_1.1_sign_%25280%2529.apk/file" class="download-btn">Download APK</a>
+      </div>
+    </div>
+    <div class="cheat">
+      <div class="video" data-video-url="https://www.youtube.com/watch?v=pdLdQy1LJvo">
+        <iframe frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="video-fallback">
+          <p>Video is not available. <a target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>
+        </div>
+      </div>
+      <div class="content">
+        <h2>Counter Combat online fps 64-Bit</h2>
+        <p>Version: 6.0</p>
+        <button class="collapsible" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block'">Show Details</button>
+        <div class="collapse-content">
+          <p><strong>Functions:</strong></p>
+          <p><strong>[Player]</strong><br>
+          - NoAds<br>
+          - Money Round<br>
+          - AirControl</p>
+          <p><strong>[Weapon]</strong><br>
+          - BuyMenu<br>
+          - FireRate<br>
+          - Slide<br>
+          - Crash All<br>
+          - Invisible name on the server</p>
+        </div>
+        <a href="https://www.mediafire.com/file/03xth9ctrontb9g/Counter_Combat_Online_FPS_6.0.apk/file" class="download-btn">Download APK</a>
+      </div>
+    </div>
+    <div class="cheat">
+      <div class="video" data-video-url="https://www.youtube.com/watch?v=s5cPiQk1nmU">
+        <iframe frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="video-fallback">
+          <p>Video is not available. <a target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>
+        </div>
+      </div>
+      <div class="content">
+        <h2>Counter Terrorist Gun Strike 64-Bit</h2>
+        <p>Version: 4.6</p>
+        <button class="collapsible" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block'">Show Details</button>
+        <div class="collapse-content">
+          <p><strong>Functions:</strong></p>
+          <p><strong>[Player]</strong><br>
+          - Speed Player<br>
+          - Set Speed-max 9999<br>
+          - Fall Speed [Fly][20] seekbar<br>
+          - Immortality [you will be invisible if they shoot at you]<br>
+          - Allow the killing teammate<br>
+          - Change team without dying</p>
+          <p><strong>[Weapon]</strong><br>
+          - Hack Explosive Weapons<br>
+          - FireRateMenu_mode<br>
+          - Kill All [RPG]</p>
+          <p><strong>[Server]</strong><br>
+          - Set NickName<br>
+          - Big text in chat[Send msg]<br>
+          - Rainbow Nickname</p>
+        </div>
+        <a href="https://ify.ac/1dDt" class="download-btn">Download APK</a>
+      </div>
+    </div>
+    <div class="cheat">
+      <div class="video" data-video-url="https://www.youtube.com/watch?v=Dt6nY6LfGdw">
+        <iframe frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="video-fallback">
+          <p>Video is not available. <a target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>
+        </div>
+      </div>
+      <div class="content">
+        <h2>Building Destruction</h2>
+        <p>Version: 3.87</p>
+        <button class="collapsible" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block'">Show Details</button>
+        <div class="collapse-content">
+          <p><strong>Functions:</strong></p>
+          <p><strong>[Player]</strong><br>
+          - Fly Immortal<br>
+          - Speed<br>
+          - Jump Force</p>
+          <p><strong>[Game]</strong><br>
+          - FireRate<br>
+          - NoADS</p>
+        </div>
+        <a href="https://www.mediafire.com/file/73shzibh81bwlrx/Building_Destruction_3.87_sign.apk/file" class="download-btn">Download APK</a>
+      </div>
+    </div>
+  </div>
+  <h2 class="section-title">Offline Games</h2>
+  <div class="container auto" id="offline">
+    <div class="cheat">
+      <div class="video" data-video-url="https://www.youtube.com/watch?v=ySgZ3O9MfR8">
+        <iframe frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="video-fallback">
+          <p>Video is not available. <a target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>
+        </div>
+      </div>
+      <div class="content">
+        <h2>Melon SandBox 64-Bit</h2>
+        <p>Version: v31.5.2</p>
+        <button class="collapsible" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block'">Show Details</button>
+        <div class="collapse-content">
+          <p><strong>Functions:</strong></p>
+          <p><strong>[Shop]</strong><br>
+          - FreeBuy</p>
+        </div>
+        <a href="https://go.linkify.ru/2AmY" class="download-btn">Download APK</a>
+      </div>
+    </div>
+    <div class="cheat">
+      <div class="video" data-video-url="https://www.youtube.com/watch?v=t60bGAh6H9E">
+        <iframe frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="video-fallback">
+          <p>Video is not available. <a target="_blank" rel="noopener noreferrer">Watch on YouTube</a></p>
+        </div>
+      </div>
+      <div class="content">
+        <h2>PvzFusion 32-Bit</h2>
+        <p>Version: 2.7</p>
+        <button class="collapsible" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block'">Show Details</button>
+        <div class="collapse-content">
+          <p><strong>Functions:</strong></p>
+          <p><strong>[Game]</strong><br>
+          - SunHack<br>
+          - noCD<br>
+          - Wave Zombie<br>
+          - SpawnMeteorit<br>
+          - Timer Spawn Meteorite</p>
+          <p><strong>[Zombie/Plants]</strong><br>
+          - Spawn Card [Zombie]<br>
+          - Spawn award [Zombie]<br>
+          - Immortal Plants<br>
+          - Immortal Zombie<br>
+          - Kill All Zombies<br>
+          - SpawnPlant ON<br>
+          - Spinner_PlantSelected<br>
+          - SpawnZombie Button<br>
+          - Spinner_ZombieSelected</p>
+          <p><strong>[input ID]</strong><br>
+          - SpawnPlant ID<br>
+          - Input ID Plant V1<br>
+          - Input ID Plant V2<br>
+          - Input ID Plant V3<br>
+          - Input ID Plant V4<br>
+          - SpawnZombie ID<br>
+          - Input ID Zombie V1<br>
+          - Input ID Zombie V2<br>
+          - Input ID Zombie V3<br>
+          - Input ID Zombie V4</p>
+        </div>
+        <a href="https://go.linkify.ru/25vH" class="download-btn">Download APK</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    function toggleSidebar(button, event) {
+      event.preventDefault();
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.classList.toggle('open');
+      button.classList.toggle('open');
+      button.textContent = button.classList.contains('open') ? '×' : '☰';
+    }
+
+    window.onload = function() {
+      const sidebar = document.querySelector('.sidebar');
+      const hamburger = document.querySelector('.hamburger');
+      sidebar.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.textContent = '☰';
+    };
+
+    document.querySelectorAll('.scroll-link').forEach(link => {
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    const layoutSelect = document.getElementById('layoutSelect');
+    const containers = document.querySelectorAll('.container');
+    const searchInput = document.getElementById('searchInput');
+
+    const savedLayout = 'single';
+    localStorage.setItem('layout', 'single');
+    layoutSelect.value = 'single';
+    updateLayout(savedLayout);
+
+    layoutSelect.addEventListener('change', function() {
+      const selectedLayout = this.value;
+      localStorage.setItem('layout', selectedLayout);
+      updateLayout(selectedLayout);
+    });
+
+    function updateLayout(layout) {
+      containers.forEach(container => {
+        container.classList.remove('single-column', 'two-columns', 'auto');
+        if (layout === 'single') {
+          container.classList.add('single-column');
+        } else if (layout === 'two') {
+          container.classList.add('two-columns');
+        } else {
+          container.classList.add('auto');
+        }
+      });
+    }
+
+    document.querySelectorAll('.collapsible').forEach(btn => {
+      btn.nextElementSibling.style.display = 'none';
+    });
+
+    document.querySelectorAll('.video').forEach(video => {
+      const url = video.getAttribute('data-video-url');
+      let videoId = '';
+      if (url.includes('youtu.be/')) {
+        videoId = url.split('ytu.be/')[1].split('?')[0];
+      } else if (url.includes('youtube.com/watch?v=')) {
+        videoId = url.split('v=')[1].split('&')[0];
+      }
+      const iframe = video.querySelector('iframe');
+      const fallbackLink = video.querySelector('.video-fallback a');
+      if (videoId) {
+        iframe.src = `https://www.youtube.com/embed/${videoId}?rel=0`;
+        fallbackLink.href = `https://www.youtube.com/watch?v=${videoId}`;
+      } else {
+        iframe.style.display = 'none';
+        video.querySelector('.video-fallback').style.display = 'block';
+      }
+      iframe.onerror = function() {
+        iframe.style.display = 'none';
+        video.querySelector('.video-fallback').style.display = 'block';
+      };
+    });
+
+    function debounce(func, wait) {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    }
+
+    const handleSearch = debounce(function() {
+      const searchTerm = searchInput.value.trim().toLowerCase();
+      const cheats = document.querySelectorAll('.cheat');
+      cheats.forEach(cheat => {
+        const title = cheat.querySelector('.content h2').textContent.toLowerCase();
+        cheat.classList.toggle('hidden', !title.includes(searchTerm));
+      });
+    }, 300);
+
+    searchInput.addEventListener('input', handleSearch);
+
+    document.querySelector('.hamburger').addEventListener('click', function(event) {
+      toggleSidebar(this, event);
+    });
+  </script>
+</body>
+</html>
